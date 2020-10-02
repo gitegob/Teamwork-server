@@ -6,15 +6,15 @@ cache:
   directories: 
     - node_modules
 install:
-  - npm install
+  - 'yarn install'
 notifications:
   email: false
 services:
   - postgresql
 before_script:
   - psql -c 'create database teamwork_test;' -U postgres
-  - 'npm run syncTables'
+  - 'yarn run syncTablesTest'
 script:
-  - 'npm run test'
+  - 'yarn run test'
 after_success:
-  - 'npm run coverage'
+  - 'yarn run coverage'

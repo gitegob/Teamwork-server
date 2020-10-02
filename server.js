@@ -1,6 +1,6 @@
 import { config } from 'dotenv';
-import app from './server/app';
-import log from './server/config/debug';
+import app from './src/app';
+import log from './src/config/debug';
 
 config();
 const port = process.env.PORT || 5000;

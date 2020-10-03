@@ -1,16 +1,10 @@
 # TeamWork
 
-[![Build Status](https://travis-ci.org/gitego-brian/TeamWork.svg?branch=develop)](https://travis-ci.org/gitego-brian/TeamWork) [![Coverage Status](https://coveralls.io/repos/github/gitego-brian/TeamWork/badge.svg?branch=develop)](https://coveralls.io/github/gitego-brian/TeamWork?branch=develop) [![Maintainability](https://api.codeclimate.com/v1/badges/babdaf2abddbdd8d9723/maintainability)](https://codeclimate.com/github/gitego-brian/TeamWork/maintainability)
+[![Build Status](https://travis-ci.org/gitego-brian/Teamwork-server.svg?branch=develop)](https://travis-ci.org/gitego-brian/Teamwork-server) [![Coverage Status](https://coveralls.io/repos/github/gitego-brian/Teamwork-server/badge.svg?branch=develop)](https://coveralls.io/github/gitego-brian/Teamwork-server?branch=develop) [![Maintainability](https://api.codeclimate.com/v1/badges/46aa141416859fea6857/maintainability)](https://codeclimate.com/github/gitego-brian/Teamwork-server/maintainability)
 
 > ## Documentation
 - [Version one](https://documenter.getpostman.com/view/8741834/SVtPXARF?version=latest#de7dbd0a-5fdb-4284-9d22-31a55cfa6a24)
 - [Version two](https://documenter.getpostman.com/view/8741834/SVtVTTQj?version=latest)
-
-## What is it?
-
-Teamwork is an internal social network for organizations’ employees. The goal of this application is to facilitate more interaction between colleagues and facilitate team bonding. Employees can use TeamWork to share ideas through articles.
-
-![Screenshot (83)](https://user-images.githubusercontent.com/53472419/65280939-b484e700-db31-11e9-856b-655a42617106.png)
 
 ## What does it do?
 
@@ -170,6 +164,6 @@ git push origin branchnameforyourchanges
 
 [gitego-brian](http://github.com/gitego-brian/) - Github
 
-gitegob7@gmail.com - GMAIL
+[gitegob7@gmail.com](mailto:gitegob7@gmail.com) - Gmail
 
 [Brian Gitego](http://facebook.com/brian.gitego) - Facebook

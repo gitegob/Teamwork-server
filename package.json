@@ -13,7 +13,7 @@
     "test": "DEBUG=app:test:* jest --detectOpenHandles",
     "lint": "eslint src",
     "syncTables": "babel-node ./src/config/syncTables.js",
-    "syncTables:test": "NODE_ENV=test yarn run syncTables",
+    "syncTablesTest": "NODE_ENV=test && yarn run syncTables",
     "coverage": "coveralls < coverage/lcov.info"
   },
   "repository": {

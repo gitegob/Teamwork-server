@@ -13,7 +13,7 @@ services:
   - postgresql
 before_script:
   - psql -c 'create database teamwork_test;' -U postgres
-  - 'yarn run syncTables:test'
+  - 'yarn run syncTablesTest'
 script:
   - 'yarn run test'
 after_success:

@@ -9,7 +9,6 @@ import db, { testDB } from './config/db';
 const app = express();
 // Test Db
 testDB(app);
-db.sync({ force: true }).then(() => db.close());
 // MIDDLEWARE
 app.use(bodyParser.json());
 app.use(

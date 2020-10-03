@@ -5,7 +5,7 @@ import log from './debug';
 
 config();
 const connectionString = process.env.NODE_ENV === 'test' ? process.env.TEST_DB_URL : process.env.DATABASE_URL;
-const db = new Sequelize(connectionString);
+const db = new Sequelize(connectionString, { logging: false });
 export const dbTry = async (res, queryFn) => {
   try {
     return await queryFn;

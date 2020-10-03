@@ -5,8 +5,9 @@ import app from '../app';
 import db from '../config/db';
 
 describe('App tests', () => {
-  afterAll(async () => {
+  afterAll(async (done) => {
     await db.close();
+    done();
   });
   it('GET/ should send a welcome message', async (done) => {
     const res = await request(app).get('/');

@@ -5,15 +5,15 @@
   "main": "app.js",
   "jest": {
     "testEnvironment": "node",
-    "collectCoverage": true,
-    "verbose": true
+    "collectCoverage": true
   },
   "scripts": {
     "start": "babel-node server.js",
     "dev": "DEBUG=app:* nodemon --exec babel-node server.js",
-    "test": "DEBUG=app:test*,app:error jest",
-    "lint": "eslint server",
-    "syncTables": "DEBUG=app:* babel-node ./server/config/syncTables.js",
+    "test": "DEBUG=app:test:* jest --detectOpenHandles",
+    "lint": "eslint src",
+    "syncTables": "babel-node ./src/config/syncTables.js",
+    "syncTables:test": "NODE_ENV=test yarn run syncTables",
     "coverage": "coveralls < coverage/lcov.info"
   },
   "repository": {

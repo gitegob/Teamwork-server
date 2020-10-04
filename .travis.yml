@@ -15,5 +15,3 @@ script:
   - yarn test
 after_success:
   - 'yarn run coverage'
-
-  'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'

@@ -2,7 +2,7 @@ import { config } from 'dotenv';
 
 config();
 
-const utils = {
+const testData = {
   makeBranAdmin: {
     email: 'bstark@gmail.com',
     isAdmin: true,
@@ -47,18 +47,15 @@ const utils = {
   },
   articleBody: {
     title: 'Just a sign',
-    article:
-      'Looking at the world through my rearview, searching for an answer up high, or is it all wasted time?',
+    article: 'Looking at the world through my rearview, searching for an answer up high, or is it all wasted time?',
   },
   article2Body: {
     title: 'Just another sign',
-    article:
-      'Looking at the world through my rearview, searching for an answer up high, or is it all wasted time?',
+    article: 'Looking at the world through my rearview, searching for an answer up high, or is it all wasted time?',
   },
   articleBodyUpdate: {
     title: 'Just a sign updated',
-    article:
-      'Looking at the world through my rearview, searching for an answer up high, or is it all wasted time?',
+    article: 'Looking at the world through my rearview, searching for an answer up high, or is it all wasted time?',
   },
   flagBody: {
     reason: 'This is not good at all',
@@ -66,7 +63,9 @@ const utils = {
   commentBody: {
     comment: 'This is a really cool article',
   },
-  invalidToken: 'eyhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQmVuIiwibGFzdE5hbWUiOiJHaXNhIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU3Mjg4MzQ4MX0.WviyBGlvr1y0KNfcxwDwjtw8JwmJ8GCe6N5wk-OPSgk',
-  nonExistToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQmVuIiwibGFzdE5hbWUiOiJHaXNhIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU3Mjk1NjY3NH0.8Rt05JoON0ayCTtetWWelYh4q9sz-NLLZJOUEqJ79Ig',
+  invalidToken:
+    'eyhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQmVuIiwibGFzdE5hbWUiOiJHaXNhIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU3Mjg4MzQ4MX0.WviyBGlvr1y0KNfcxwDwjtw8JwmJ8GCe6N5wk-OPSgk',
+  nonExistToken:
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQmVuIiwibGFzdE5hbWUiOiJHaXNhIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU3Mjk1NjY3NH0.8Rt05JoON0ayCTtetWWelYh4q9sz-NLLZJOUEqJ79Ig',
 };
-export default utils;
+export default testData;

@@ -4,7 +4,7 @@ import morgan from 'morgan';
 import articleRoutes from './routes/article.routes';
 import userRoutes from './routes/user.routes';
 import * as helper from './lib/helpers';
-import db, { testDB } from './config/db';
+import { testDB } from './config/db';
 
 const app = express();
 // Test Db
@@ -20,7 +20,11 @@ app.use(morgan('dev'));
 
 // ROUTING
 app.get('/', (_req, res) => {
-  helper.sendSuccess(res, 200, 'Welcome to TeamWork!, go to  https://documenter.getpostman.com/view/8741834/SVtPXARF?version=latest  or go to the REPO at https://github.com/gitego-brian/TeamWork for documentation');
+  helper.sendSuccess(
+    res,
+    200,
+    'Welcome to TeamWork!, go to  https://documenter.getpostman.com/view/8741834/SVtPXARF?version=latest  or go to the REPO at https://github.com/gitego-brian/TeamWork for documentation',
+  );
 });
 
 app.use('/api/auth', userRoutes);

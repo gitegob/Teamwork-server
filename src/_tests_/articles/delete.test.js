@@ -16,6 +16,7 @@ describe('Delete article tests', () => {
     const res2 = await request(app).post('/api/auth/login').send(testData.branLogin);
     testLog.aDelete(res2.body);
     tempData.branToken = res2.body.data.token;
+    testLog.aDelete('***************************testttt', res, res2);
     const res3 = await request(app).post('/api/articles').set('Authorization', `Bearer ${testData.branToken}`).send(testData.articleBody);
     tempData.branArticleId = res3.body.data.id;
     const res4 = await request(app).post('/api/articles').set('Authorization', `Bearer ${testData.jonToken}`).send(testData.article2Body);

@@ -15,7 +15,7 @@ describe('Delete article tests', () => {
     await request(app).patch('/api/auth/users/toggleadmin').set('Authorization', `Bearer ${testData.jonToken}`).send(testData.makeBranAdmin);
     const res2 = await request(app).post('/api/auth/login').send(testData.branLogin);
     tempData.branToken = res2.body.data.token;
-    testLog.aDelete('***************************testttt', res, res2);
+    console.log('***************************testttt', res, res2);
     const res3 = await request(app).post('/api/articles').set('Authorization', `Bearer ${testData.branToken}`).send(testData.articleBody);
     tempData.branArticleId = res3.body.data.id;
     const res4 = await request(app).post('/api/articles').set('Authorization', `Bearer ${testData.jonToken}`).send(testData.article2Body);
@@ -59,7 +59,6 @@ describe('Delete article tests', () => {
     const res = await request(app).delete('/api/articles/brian').set('Authorization', `Bearer ${tempData.branToken}`);
     expect(res.status).toEqual(400);
     expect(res.body).toHaveProperty('error');
-    console.log(tempData);
     done();
   });
 });

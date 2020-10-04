@@ -27,37 +27,38 @@ describe('Delete article tests', () => {
     done();
   });
   it("DELETE/ user should not delete another's article", async (done) => {
-    const res = await request(app).delete(`/api/articles/${testData.jonArticleId}`).set('Authorization', `Bearer ${testData.branToken}`);
+    const res = await request(app).delete(`/api/articles/${tempData.jonArticleId}`).set('Authorization', `Bearer ${testData.branToken}`);
     expect(res.status).toEqual(403);
     expect(res.body).toHaveProperty('error');
     done();
   });
   it('POST/ user should flag an article', async (done) => {
     const res = await request(app)
-      .post(`/api/articles/${testData.jonArticleId}/flags`)
-      .set('Authorization', `Bearer ${testData.branToken}`)
+      .post(`/api/articles/${tempData.jonArticleId}/flags`)
+      .set('Authorization', `Bearer ${tempData.branToken}`)
       .send(testData.flagBody);
     expect(res.status).toEqual(201);
     expect(res.body).toHaveProperty('message');
     done();
   });
   it('DELETE/ admin should delete a flagged article', async (done) => {
-    const res = await request(app).delete(`/api/articles/${testData.jonArticleId}`).set('Authorization', `Bearer ${testData.branToken}`);
+    const res = await request(app).delete(`/api/articles/${tempData.jonArticleId}`).set('Authorization', `Bearer ${tempData.branToken}`);
     testLog.aDelete(res.body);
     expect(res.status).toEqual(200);
     expect(res.body).toHaveProperty('message');
     done();
   });
   it('DELETE/ user should delete their article', async (done) => {
-    const res = await request(app).delete(`/api/articles/${testData.branArticleId}`).set('Authorization', `Bearer ${testData.branToken}`);
+    const res = await request(app).delete(`/api/articles/${tempData.branArticleId}`).set('Authorization', `Bearer ${tempData.branToken}`);
     expect(res.status).toEqual(200);
     expect(res.body).toHaveProperty('message');
     done();
   });
   it('DELETE/ user should not delete a article with invalid id', async (done) => {
-    const res = await request(app).delete('/api/articles/brian').set('Authorization', `Bearer ${testData.branToken}`);
+    const res = await request(app).delete('/api/articles/brian').set('Authorization', `Bearer ${tempData.branToken}`);
     expect(res.status).toEqual(400);
     expect(res.body).toHaveProperty('error');
+    console.log(tempData);
     done();
   });
 });

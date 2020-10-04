@@ -6,20 +6,20 @@ import db from '../../config/db';
 import { testLog } from '../../config/debug';
 import testData from '../_testData_/testData';
 
+const tempData = {};
 describe('Delete article tests', () => {
-  beforeAll(async (done) => {
+  beforeAll(async () => {
     await request(app).post('/api/auth/signup').send(testData.branSignup);
     const res = await request(app).post('/api/auth/signup').send(testData.jonSignup);
-    testData.jonToken = res.body.data.token;
+    tempData.jonToken = res.body.data.token;
     await request(app).patch('/api/auth/users/toggleadmin').set('Authorization', `Bearer ${testData.jonToken}`).send(testData.makeBranAdmin);
     const res2 = await request(app).post('/api/auth/login').send(testData.branLogin);
     testLog.aDelete(res2.body);
-    testData.branToken = res2.body.data.token;
+    tempData.branToken = res2.body.data.token;
     const res3 = await request(app).post('/api/articles').set('Authorization', `Bearer ${testData.branToken}`).send(testData.articleBody);
-    testData.branArticleId = res3.body.data.id;
+    tempData.branArticleId = res3.body.data.id;
     const res4 = await request(app).post('/api/articles').set('Authorization', `Bearer ${testData.jonToken}`).send(testData.article2Body);
-    testData.jonArticleId = res4.body.data.id;
-    done();
+    tempData.jonArticleId = res4.body.data.id;
   });
   afterAll(async (done) => {
     await db.sync({ force: true });

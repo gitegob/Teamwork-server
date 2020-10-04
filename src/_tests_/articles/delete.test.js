@@ -6,20 +6,20 @@ import db from '../../config/db';
 import { testLog } from '../../config/debug';
 import testData from '../_testData_/testData';
 
-const tempData = {};
 describe('Delete article tests', () => {
-  beforeAll(async () => {
+  beforeAll(async (done) => {
     await request(app).post('/api/auth/signup').send(testData.branSignup);
     const res = await request(app).post('/api/auth/signup').send(testData.jonSignup);
-    tempData.jonToken = res.body.data.token;
+    testData.jonToken = res.body.data.token;
     await request(app).patch('/api/auth/users/toggleadmin').set('Authorization', `Bearer ${testData.jonToken}`).send(testData.makeBranAdmin);
     const res2 = await request(app).post('/api/auth/login').send(testData.branLogin);
-    tempData.branToken = res2.body.data.token;
-    console.log('***************************testttt', res, res2);
+    testLog.aDelete(res2.body);
+    testData.branToken = res2.body.data.token;
     const res3 = await request(app).post('/api/articles').set('Authorization', `Bearer ${testData.branToken}`).send(testData.articleBody);
-    tempData.branArticleId = res3.body.data.id;
+    testData.branArticleId = res3.body.data.id;
     const res4 = await request(app).post('/api/articles').set('Authorization', `Bearer ${testData.jonToken}`).send(testData.article2Body);
-    tempData.jonArticleId = res4.body.data.id;
+    testData.jonArticleId = res4.body.data.id;
+    done();
   });
   afterAll(async (done) => {
     await db.sync({ force: true });
@@ -27,36 +27,35 @@ describe('Delete article tests', () => {
     done();
   });
   it("DELETE/ user should not delete another's article", async (done) => {
-    const res = await request(app).delete(`/api/articles/${tempData.jonArticleId}`).set('Authorization', `Bearer ${testData.branToken}`);
-    testLog.aDelete(res.body);
+    const res = await request(app).delete(`/api/articles/${testData.jonArticleId}`).set('Authorization', `Bearer ${testData.branToken}`);
     expect(res.status).toEqual(403);
     expect(res.body).toHaveProperty('error');
     done();
   });
   it('POST/ user should flag an article', async (done) => {
     const res = await request(app)
-      .post(`/api/articles/${tempData.jonArticleId}/flags`)
-      .set('Authorization', `Bearer ${tempData.branToken}`)
+      .post(`/api/articles/${testData.jonArticleId}/flags`)
+      .set('Authorization', `Bearer ${testData.branToken}`)
       .send(testData.flagBody);
     expect(res.status).toEqual(201);
     expect(res.body).toHaveProperty('message');
     done();
   });
   it('DELETE/ admin should delete a flagged article', async (done) => {
-    const res = await request(app).delete(`/api/articles/${tempData.jonArticleId}`).set('Authorization', `Bearer ${tempData.branToken}`);
+    const res = await request(app).delete(`/api/articles/${testData.jonArticleId}`).set('Authorization', `Bearer ${testData.branToken}`);
     testLog.aDelete(res.body);
     expect(res.status).toEqual(200);
     expect(res.body).toHaveProperty('message');
     done();
   });
   it('DELETE/ user should delete their article', async (done) => {
-    const res = await request(app).delete(`/api/articles/${tempData.branArticleId}`).set('Authorization', `Bearer ${tempData.branToken}`);
+    const res = await request(app).delete(`/api/articles/${testData.branArticleId}`).set('Authorization', `Bearer ${testData.branToken}`);
     expect(res.status).toEqual(200);
     expect(res.body).toHaveProperty('message');
     done();
   });
   it('DELETE/ user should not delete a article with invalid id', async (done) => {
-    const res = await request(app).delete('/api/articles/brian').set('Authorization', `Bearer ${tempData.branToken}`);
+    const res = await request(app).delete('/api/articles/brian').set('Authorization', `Bearer ${testData.branToken}`);
     expect(res.status).toEqual(400);
     expect(res.body).toHaveProperty('error');
     done();

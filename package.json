@@ -11,7 +11,7 @@
     "start": "babel-node server.js",
     "dev": "DEBUG=app:* nodemon --exec babel-node server.js",
     "test:jest": "DEBUG=app:test:* jest --forceExit",
-    "test": "DEBUG=app:test:* mocha ./src/_tests_/articles/delete.test --require @babel/register --exit",
+    "test": "DEBUG=app:test:* nyc --reporter=text mocha ./src/_tests_/index.test.js --require @babel/register --exit",
     "lint": "eslint src",
     "syncTables": "babel-node ./src/config/syncTables.js",
     "syncTablesTest": "NODE_ENV=test && yarn run syncTables",

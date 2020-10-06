@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-undef */
-import { expect } from 'chai';
+// import { expect } from 'chai';
 import request from 'supertest';
 import app from '../../app';
 // import db from '../config/db';
@@ -9,13 +9,13 @@ import app from '../../app';
 describe('App tests', () => {
   it('GET/ should send a welcome message', async () => {
     const res = await request(app).get('/');
-    expect(res.status).to.equal(200);
-    expect(res.body).to.have.property('data');
+    expect(res.status).toEqual(200);
+    expect(res.body).toHaveProperty('data');
   });
   it('GET/ should send a not found message', async () => {
     const res = await request(app).get('/jibberjabber');
-    expect(res.status).to.equal(404);
-    expect(res.body).to.have.property('error');
+    expect(res.status).toEqual(404);
+    expect(res.body).toHaveProperty('error');
   });
 });
 // };

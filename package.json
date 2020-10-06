@@ -5,12 +5,13 @@
   "main": "app.js",
   "jest": {
     "testEnvironment": "node",
-    "collectCoverage": true
+    "collectCoverage": true,
+    "verbose": false
   },
   "scripts": {
     "start": "babel-node server.js",
     "dev": "DEBUG=app:* nodemon --exec babel-node server.js",
-    "test": "DEBUG=app:test:* jest ./src/_tests_/articles/update.test.js --detectOpenHandles",
+    "test": "TERM=dumb jest ./src/_tests_/articles/update.test.js --colors --detectOpenHandles",
     "test:jest": "DEBUG=app:test:* nyc --reporter=text mocha ./src/_tests_/**/*.test.js --require @babel/register --timeout 10000 --exit",
     "lint": "eslint src",
     "syncTables": "babel-node ./src/config/syncTables.js",

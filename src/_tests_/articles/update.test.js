@@ -8,7 +8,7 @@ import testData from '../_testData_/testData';
 
 // const updateArticleTests = () => {
 describe('Update article tests', () => {
-  beforeAll(async () => {
+  beforeAll(async (done) => {
     const pres = await request(app).post('/api/auth/signup').send(testData.branSignup);
     console.log('###############################################', pres.body);
     const pres2 = await request(app).post('/api/auth/signup').send(testData.jonSignup);
@@ -22,6 +22,7 @@ describe('Update article tests', () => {
     testData.branArticleId = res3.body.data.id;
     const res4 = await request(app).post('/api/articles').set('Authorization', `Bearer ${testData.jonToken}`).send(testData.article2Body);
     testData.jonArticleId = res4.body.data.id;
+    done();
   });
   afterAll(async () => {
     await db.sync({ force: true });

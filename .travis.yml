@@ -10,8 +10,10 @@ services:
   - postgresql
 before_script:
   - psql -c 'create database teamwork_test;' -U postgres
-  - 'yarn run syncTablesTest'
+  - psql -c 'create user gbrian with password '00005';' -U postgres
+  - yarn run syncTablesTest
 script:
   - yarn test
 after_success:
-  - 'yarn run coverage'
+  - yarn run coverage
+

@@ -15,7 +15,7 @@
     "test:jest": "DEBUG=app:test:* nyc --reporter=text mocha ./src/_tests_/**/*.test.js --require @babel/register --timeout 10000 --exit",
     "lint": "eslint src",
     "syncTables": "babel-node ./src/config/syncTables.js",
-    "syncTablesTest": "NODE_ENV=test && yarn run syncTables",
+    "syncTablesTest": "NODE_ENV=test babel-node ./src/config/syncTables.js",
     "coverage:jest": "coveralls < coverage/lcov.info",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },

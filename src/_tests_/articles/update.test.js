@@ -9,9 +9,12 @@ import testData from '../_testData_/testData';
 // const updateArticleTests = () => {
 describe('Update article tests', () => {
   beforeAll(async () => {
-    await request(app).post('/api/auth/signup').send(testData.branSignup);
-    await request(app).post('/api/auth/signup').send(testData.jonSignup);
+    const pres = await request(app).post('/api/auth/signup').send(testData.branSignup);
+    console.log('###############################################', pres.body);
+    const pres2 = await request(app).post('/api/auth/signup').send(testData.jonSignup);
+    console.log('###############################################', pres2.body);
     const res = await request(app).post('/api/auth/login').send(testData.branLogin);
+    console.log('###############################################', res.body);
     const res2 = await request(app).post('/api/auth/login').send(testData.jonLogin);
     testData.branToken = res.body.data.token;
     testData.jonToken = res2.body.data.token;

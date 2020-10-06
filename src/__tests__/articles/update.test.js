@@ -15,7 +15,7 @@ describe('Update article tests', () => {
     done();
   });
 
-  it('should initialize the variables', async (done) => {
+  beforeAll('should initialize the variables', async (done) => {
     const pres = await request(app).post('/api/auth/signup').send(testData.branSignup);
     const pres2 = await request(app).post('/api/auth/signup').send(testData.jonSignup);
     const res = await request(app).post('/api/auth/login').send(testData.branLogin);

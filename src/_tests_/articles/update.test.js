@@ -4,29 +4,31 @@
 import request from 'supertest';
 import app from '../../app';
 import db from '../../config/db';
+import { testLog } from '../../config/debug';
 import testData from '../_testData_/testData';
 
 // const updateArticleTests = () => {
 describe('Update article tests', () => {
-  beforeAll(async (done) => {
+  afterAll(async () => {
+    await db.sync({ force: true });
+    await db.close();
+  });
+
+  it('should initialize the variables', async (done) => {
     const pres = await request(app).post('/api/auth/signup').send(testData.branSignup);
-    console.log('###############################################', pres.body);
     const pres2 = await request(app).post('/api/auth/signup').send(testData.jonSignup);
-    console.log('###############################################', pres2.body);
     const res = await request(app).post('/api/auth/login').send(testData.branLogin);
     console.log('###############################################', res.body);
     const res2 = await request(app).post('/api/auth/login').send(testData.jonLogin);
     testData.branToken = res.body.data.token;
     testData.jonToken = res2.body.data.token;
     const res3 = await request(app).post('/api/articles').set('Authorization', `Bearer ${testData.branToken}`).send(testData.articleBody);
+    console.log('###############################################', res3.body);
+    testLog.aUpdate(res3.body);
     testData.branArticleId = res3.body.data.id;
     const res4 = await request(app).post('/api/articles').set('Authorization', `Bearer ${testData.jonToken}`).send(testData.article2Body);
     testData.jonArticleId = res4.body.data.id;
     done();
-  });
-  afterAll(async () => {
-    await db.sync({ force: true });
-    await db.close();
   });
   it('PATCH/ user should update their article', async () => {
     const res = await request(app)

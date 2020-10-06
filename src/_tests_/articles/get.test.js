@@ -17,7 +17,7 @@ describe('Get article tests', () => {
   });
   after(async () => {
     await db.sync({ force: true });
-    await db.close();
+    // await db.close();
   });
   it('GET/ user should get all articles', async () => {
     const res = await request(app).get('/api/articles').set('Authorization', `Bearer ${testData.branToken}`);

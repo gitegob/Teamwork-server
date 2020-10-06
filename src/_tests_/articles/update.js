@@ -22,7 +22,7 @@ const updateArticleTests = () => {
     });
     after(async () => {
       await db.sync({ force: true });
-      // await db.close();
+      await db.close();
     });
     it('PATCH/ user should update their article', async () => {
       const res = await request(app)

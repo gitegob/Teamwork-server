@@ -9,6 +9,7 @@ import testData from '../_testData_/testData';
 
 // const signupTests = () => {
 describe('User tests', () => {
+  console.log(process.env.NODE_ENV);
   afterAll(async (done) => {
     await db.sync({ force: true });
     await db.close();

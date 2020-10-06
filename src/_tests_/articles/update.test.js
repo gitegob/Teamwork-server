@@ -9,9 +9,10 @@ import testData from '../_testData_/testData';
 
 // const updateArticleTests = () => {
 describe('Update article tests', () => {
-  afterAll(async () => {
+  afterAll(async (done) => {
     await db.sync({ force: true });
     await db.close();
+    done();
   });
 
   it('should initialize the variables', async (done) => {
@@ -30,26 +31,29 @@ describe('Update article tests', () => {
     testData.jonArticleId = res4.body.data.id;
     done();
   });
-  it('PATCH/ user should update their article', async () => {
+  it('PATCH/ user should update their article', async (done) => {
     const res = await request(app)
       .patch(`/api/articles/${testData.branArticleId}`)
       .set('Authorization', `Bearer ${testData.branToken}`)
       .send(testData.articleBodyUpdate);
     expect(res.status).toEqual(200);
     expect(res.body).toHaveProperty('data');
+    done();
   });
-  it('PATCH/ user should not update a article with invalid id', async () => {
+  it('PATCH/ user should not update a article with invalid id', async (done) => {
     const res = await request(app).patch('/api/articles/brian').set('Authorization', `Bearer ${testData.branToken}`).send(testData.articleBodyUpdate);
     expect(res.status).toEqual(400);
     expect(res.body).toHaveProperty('error');
+    done();
   });
-  it("PATCH/ user should not update another's article", async () => {
+  it("PATCH/ user should not update another's article", async (done) => {
     const res = await request(app)
       .patch(`/api/articles/${testData.jonArticleId}`)
       .set('Authorization', `Bearer ${testData.branToken}`)
       .send(testData.articleBodyUpdate);
     expect(res.status).toEqual(403);
     expect(res.body).toHaveProperty('error');
+    done();
   });
 });
 // };

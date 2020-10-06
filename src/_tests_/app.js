@@ -3,13 +3,10 @@
 import { expect } from 'chai';
 import request from 'supertest';
 import app from '../app';
-import db from '../config/db';
+// import db from '../config/db';
 
 const appTests = () => {
   describe('App tests', () => {
-    after(async () => {
-      // await db.close();
-    });
     it('GET/ should send a welcome message', async () => {
       const res = await request(app).get('/');
       expect(res.status).to.equal(200);

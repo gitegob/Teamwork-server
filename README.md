@@ -1,6 +1,6 @@
 # TeamWork
 
-[![Build Status](https://travis-ci.org/gitego-brian/Teamwork-server.svg?branch=develop)](https://travis-ci.org/gitego-brian/Teamwork-server) [![Coverage Status](https://coveralls.io/repos/github/gitego-brian/Teamwork-server/badge.svg?branch=develop)](https://coveralls.io/github/gitego-brian/Teamwork-server?branch=develop) [![Maintainability](https://api.codeclimate.com/v1/badges/46aa141416859fea6857/maintainability)](https://codeclimate.com/github/gitego-brian/Teamwork-server/maintainability)
+ [![Maintainability](https://api.codeclimate.com/v1/badges/46aa141416859fea6857/maintainability)](https://codeclimate.com/github/gitego-brian/Teamwork-server/maintainability)
 
 > ## Documentation
 - [Version one](https://documenter.getpostman.com/view/8741834/SVtPXARF?version=latest#de7dbd0a-5fdb-4284-9d22-31a55cfa6a24)

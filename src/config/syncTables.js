@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS "articleFlags" ("id"   SERIAL , "reason" VARCHAR(255)
 CREATE TABLE IF NOT EXISTS "commentFlags" ("id"   SERIAL , "reason" VARCHAR(255) NOT NULL, "createdAt" TIMESTAMP WITH TIME ZONE NOT NULL, "authorId" INTEGER REFERENCES "users" ("id") ON DELETE CASCADE ON UPDATE CASCADE, "commentId" INTEGER REFERENCES "comments" ("id") ON DELETE CASCADE ON UPDATE CASCADE, PRIMARY KEY ("id"));
 CREATE TABLE IF NOT EXISTS "passwords" ("id"   SERIAL , "password" TEXT NOT NULL, "createdAt" TIMESTAMP WITH TIME ZONE NOT NULL, "updatedAt" TIMESTAMP WITH TIME ZONE NOT NULL, "userId" INTEGER REFERENCES "users" ("id") ON DELETE CASCADE ON UPDATE CASCADE, PRIMARY KEY ("id"));`;
 
-console.log(process.env.NODE_ENV);
+log.db(process.env.NODE_ENV);
 db.query(syncQueries).then(() => {
   db.close();
 }).catch((error) => log.error(error));

@@ -1,6 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-undef */
-import { expect } from 'chai';
 import request from 'supertest';
 import app from '../../app';
 import db from '../../config/db';
@@ -9,7 +8,7 @@ import testData from '../_testData_/testData';
 
 const deleteCommentTests = () => {
   describe('Delete Comment tests', () => {
-    before(async () => {
+    beforeAll(async () => {
       await request(app).post('/api/auth/signup').send(testData.branSignup);
       const res = await request(app).post('/api/auth/signup').send(testData.jonSignup);
       testData.jonToken = res.body.data.token;
@@ -32,7 +31,7 @@ const deleteCommentTests = () => {
         .send(testData.commentBody);
       testData.branCommentId = res6.body.data.comment.id;
     });
-    after(async () => {
+    afterAll(async () => {
       await db.sync({ force: true });
       // await db.close();
     });
@@ -40,38 +39,38 @@ const deleteCommentTests = () => {
       const res = await request(app)
         .delete(`/api/articles/${testData.jonArticleId}/comments/${testData.jonCommentId}`)
         .set('Authorization', `Bearer ${testData.branToken}`);
-      expect(res.status).to.equal(403);
-      expect(res.body).to.have.property('error');
+      expect(res.status).toEqual(403);
+      expect(res.body).toHaveProperty('error');
     });
     it('POST/ user should flag a comment', async () => {
       const res = await request(app)
         .post(`/api/articles/${testData.jonArticleId}/comments/${testData.jonCommentId}/flags`)
         .set('Authorization', `Bearer ${testData.branToken}`)
         .send(testData.flagBody);
-      expect(res.status).to.equal(201);
-      expect(res.body).to.have.property('message');
+      expect(res.status).toEqual(201);
+      expect(res.body).toHaveProperty('message');
     });
     it('DELETE/ admin should delete a flagged comment', async () => {
       const res = await request(app)
         .delete(`/api/articles/${testData.jonArticleId}/comments/${testData.jonCommentId}`)
         .set('Authorization', `Bearer ${testData.branToken}`);
       testLog.aDelete(res.body);
-      expect(res.status).to.equal(200);
-      expect(res.body).to.have.property('message');
+      expect(res.status).toEqual(200);
+      expect(res.body).toHaveProperty('message');
     });
     it('DELETE/ user should delete their comment', async () => {
       const res = await request(app)
         .delete(`/api/articles/${testData.branArticleId}/comments/${testData.branCommentId}`)
         .set('Authorization', `Bearer ${testData.branToken}`);
-      expect(res.status).to.equal(200);
-      expect(res.body).to.have.property('message');
+      expect(res.status).toEqual(200);
+      expect(res.body).toHaveProperty('message');
     });
     it('DELETE/ user should not delete a comment with invalid id', async () => {
       const res = await request(app)
         .delete(`/api/articles/${testData.branArticleId}/comments/brian`)
         .set('Authorization', `Bearer ${testData.branToken}`);
-      expect(res.status).to.equal(400);
-      expect(res.body).to.have.property('error');
+      expect(res.status).toEqual(400);
+      expect(res.body).toHaveProperty('error');
     });
   });
 };
